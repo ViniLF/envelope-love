@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --primary: #fff;
+  --bg-color: #f8e2e6;
+  --bg-envelope-color: #fff0f5;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --txt-color: #333333;
+  --heart-color: #ff69b4;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca as partículas atrás do conteúdo */
+}
+
+.container {
+  z-index: 1;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.container > .envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+}
+
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 300px;
+  height: 230px;
+}
+
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 130px solid var(--envelope-tab);
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 130px solid transparent;
+  border-right: 150px solid var(--envelope-cover);
+  border-bottom: 100px solid var(--envelope-cover);
+  border-left: 150px solid var(--envelope-cover);
+}
+
+.envelope > .letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 55%;
+  height: 82%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 10px;
+}
+
+.envelope > .letter > .text {
+  font-family: "Sour Gummy", sans-serif;
+  font-optical-sizing: auto; 
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: #333333;
+  font-size: 10px;
+  margin-left: 10px;
+  margin-top: -20px;
+  line-height: 1.8;
+  text-align: left;
+  padding: 0;
+}
+
+.text strong {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  top: -150px;
+}
+
+.text p {
+  margin: 0 0 20px 0;
+
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before, 
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -7.5px;
+}
+
+.heart:after {
+  right: 7.5px;
+}
+
+.heart:hover {
+  transform: translate(-50%, -20%) rotate(45deg) scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.flap > .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap > .envelope > .letter {
+  bottom: 100px;
+  transform: scale(1.5);
+  transition-delay: 1s;
+}
+
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.flap > .envelope-wrapper {
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes floatHearts {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+.heart-floating {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 2rem;
+  color: #ff69b4;
+  animation: floatHearts 5s infinite ease-in-out;
+}
